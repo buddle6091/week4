@@ -4,8 +4,8 @@ import { combineReducers } from "redux";
 import todoStore from "../modules/todoStore";
 
 const rootReducer = combineReducers({
-  todoStore: todoStore,
+  todoStore,
 });
-const store = createStore(todoStore);
+const store = createStore(rootReducer);
 
 export default store;

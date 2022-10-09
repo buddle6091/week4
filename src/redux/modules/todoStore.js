@@ -5,11 +5,11 @@ const SEND = "TODOSTORE/SEND"; // 상수로 생성
 const REDIRECT = "TODOSTORE/REDIRECT";
 
 // Return Action Object -> must have key / the 'order' to reducer
-export const todoData = (title, content) => {
+// payload value : title, content
+export const todoData = (payload) => {
   return {
     type: SEND,
-    title,
-    content,
+    payload,
   };
 };
 // 초기 상태값
@@ -18,13 +18,13 @@ const initialState = {
   list: [
     {
       id: 1,
-      text: "react",
+      title: "react",
       content: "react를 알아봐요",
       isDone: true,
     },
     {
       id: 2,
-      text: "vue",
+      title: "vue",
       content: "vue를 알아봐요",
       isDone: false,
     },
@@ -36,14 +36,8 @@ const todoStore = (state = initialState, action) => {
   switch (action.type) {
     case SEND: {
       return {
-        list: [
-          ...state.list,
-          {
-            id: state.id,
-            title: action.title,
-            content: action.content,
-          },
-        ],
+        ...state,
+        list: [...state.list, action.payload, action.payload],
       };
     }
     case REDIRECT: {
