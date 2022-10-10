@@ -1,19 +1,15 @@
 import "../App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, updateTodo } from "../redux/modules/todoStore";
+//import { useNavigate } from "react-router-dom";
 
 function Todo({ todo, title, content }) {
-  const list = useSelector((state) => state.todoStore.list);
+  //const navigate = useNavigate();
+  //const list = useSelector((state) => state.todoStore.list);
   const dispatch = useDispatch();
 
-  const deleteItem = () => {
-    dispatch(
-      deleteTodo({
-        //id: todoId.current,
-        title: title,
-        content: content,
-      })
-    );
+  const deleteItem = (id) => {
+    dispatch(deleteTodo(id));
     /*     const temp = list.map((todo) => todo.id !== id);
     return temp; */
   };
@@ -24,9 +20,11 @@ function Todo({ todo, title, content }) {
 
   return (
     <div className="Todo">
+      <h1>상세보기</h1>
       <h2> {title} </h2>
       <p>{content}</p>
-      <button type="button" onClick={deleteItem}>
+      {/* 즉시 실행 함수를 썬 이유는 Clouser 개념*/}
+      <button type="button" onClick={() => deleteItem(todo.id)}>
         Delete
       </button>
       <button type="button" onClick={() => doneItem(todo.id)}>

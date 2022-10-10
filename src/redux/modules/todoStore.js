@@ -81,6 +81,12 @@ const todoStore = (state = initialState, action) => {
         }),
       };
     }
+    case DELETE: {
+      return {
+        ...state,
+        list: state.list.filter((x) => x.id !== action.payload),
+      };
+    }
     default:
       return state;
   }

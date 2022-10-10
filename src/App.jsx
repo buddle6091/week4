@@ -1,21 +1,14 @@
 import "./App.css";
+import Router from "./router/Router";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Header from "./components/Header";
-import TodoBox from "./components/TodoBox";
-import TodoForm from "./components/TodoForm";
+import Home from "./pages/Home";
 
 function App() {
-  const tdStore = useSelector((state) => state);
-  //const [todoD, SetTodoD] = useState();
-
-  console.log(tdStore);
   return (
     <div className="App">
-      <Header />
-      <TodoForm />
-      <TodoBox />
+      <Home />
     </div>
   );
 }
