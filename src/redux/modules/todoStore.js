@@ -17,7 +17,7 @@ export const sendTodo = (payload) => {
 
 export const deleteTodo = (payload) => {
   return {
-    type: UPDATE,
+    type: DELETE,
     payload,
   };
 };
@@ -25,7 +25,7 @@ export const deleteTodo = (payload) => {
 // payload value : id, isDone
 export const updateTodo = (payload) => {
   return {
-    type: DELETE,
+    type: UPDATE,
     payload,
   };
 };
@@ -69,7 +69,8 @@ const todoStore = (state = initialState, action) => {
       return {
         ...state,
         list: state.list.map((todo) => {
-          if (todo.id === action.payload.id) {
+          if (todo.id === action.payload) {
+            // payload.id 이딴거 없음.
             return {
               ...todo,
               isDone: !todo.isDone,
