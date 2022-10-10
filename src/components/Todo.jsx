@@ -1,24 +1,26 @@
 import "../App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { todoData } from "../redux/modules/todoStore";
+import { deleteTodo, updateTodo } from "../redux/modules/todoStore";
 
-function Todo({ id, title, content }) {
-  const todos = useSelector((state) => state);
+function Todo({ todo, id, title, content }) {
+  const list = useSelector((state) => state.todoStore.list);
   const dispatch = useDispatch();
 
   const deleteItem = () => {
     dispatch(
-      todoData({
+      deleteTodo({
         //id: todoId.current,
         title: title,
         content: content,
       })
     );
-    const temp = todos.map((todo) => todo.id !== id);
+    const temp = list.map((todo) => todo.id !== id);
     return temp;
   };
 
-  const doneItem = () => {};
+  const doneItem = () => {
+    dispatch(updateTodo);
+  };
 
   return (
     <div className="Todo">
@@ -27,7 +29,10 @@ function Todo({ id, title, content }) {
       <button type="button" onClick={deleteItem}>
         Delete
       </button>
-      <button type="button">Done!</button>
+      <button type="button" onClick={doneItem}>
+        {/* 나는 컴포넌트로 나눴기에 props로 부모 컴포넌트의 map의 current value인 'todo'를 받아와야 한다. */}
+        {todo.isDone ? "Cancle" : "Done!"}
+      </button>
     </div>
   );
 }

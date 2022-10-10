@@ -3,16 +3,40 @@
 // Action type
 const SEND = "TODOSTORE/SEND"; // 상수로 생성
 const DELETE = "TODOSTORE/DELETE";
+const UPDATE = "TODOSTORE/UPDATE";
 const REDIRECT = "TODOSTORE/REDIRECT";
 
 // Return Action Object -> must have key / the 'order' to reducer
 // payload value : title, content
-export const todoData = (payload) => {
+export const sendTodo = (payload) => {
   return {
     type: SEND,
     payload,
   };
 };
+
+export const deleteTodo = (payload) => {
+  return {
+    type: UPDATE,
+    payload,
+  };
+};
+
+// payload value : id, isDone
+export const updateTodo = (payload) => {
+  return {
+    type: DELETE,
+    payload,
+  };
+};
+
+export const redirectTodo = (payload) => {
+  return {
+    type: REDIRECT,
+    payload,
+  };
+};
+
 // 초기 상태값
 
 const initialState = {
@@ -41,8 +65,20 @@ const todoStore = (state = initialState, action) => {
         list: [...state.list, action.payload],
       };
     }
-    case DELETE: {
-      return {};
+    case UPDATE: {
+      return {
+        ...state,
+        list: state.list.map((todo) => {
+          if (todo.id === action.payload.id) {
+            return {
+              ...todo,
+              isDone: !todo.isDone,
+            };
+          } else {
+            return todo;
+          }
+        }),
+      };
     }
     default:
       return state;
