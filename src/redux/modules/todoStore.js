@@ -2,6 +2,7 @@
 
 // Action type
 const SEND = "TODOSTORE/SEND"; // 상수로 생성
+const DELETE = "TODOSTORE/DELETE";
 const REDIRECT = "TODOSTORE/REDIRECT";
 
 // Return Action Object -> must have key / the 'order' to reducer
@@ -36,11 +37,11 @@ const todoStore = (state = initialState, action) => {
   switch (action.type) {
     case SEND: {
       return {
-        ...state,
-        list: [...state.list, action.payload, action.payload],
+        ...state, // 여기서 아마 깊은복사로 state를 초기화 해주는 듯 ㅇㅇ
+        list: [...state.list, action.payload],
       };
     }
-    case REDIRECT: {
+    case DELETE: {
       return {};
     }
     default:

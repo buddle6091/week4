@@ -8,14 +8,12 @@ import TodoForm from "./components/TodoForm";
 
 function App() {
   const tdStore = useSelector((state) => state);
-  const [todoD, SetTodoD] = useState();
+  //const [todoD, SetTodoD] = useState();
 
   console.log(tdStore);
   return (
     <div className="App">
       <Header />
-      {tdStore.title}
-      {tdStore.content}
       <TodoForm />
       <TodoBox />
     </div>
