@@ -54,12 +54,13 @@ const initialState = {
       isDone: false,
     },
   ],
+
+  /* 상세페이지에서'만' 쓰이기 위한  */
   void: [
     {
       id: "0",
       title: "",
       content: "",
-
       isDone: false,
     },
   ],
@@ -100,7 +101,7 @@ const todoStore = (state = initialState, action) => {
       return {
         ...state,
         void: state.list.find((todo) => {
-          return todo.id === action.payload;
+          return todo.id === action.id;
         }),
       };
     }

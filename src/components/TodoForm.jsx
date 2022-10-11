@@ -14,12 +14,13 @@ function TodoForm() {
 
   // useEffect hook으로 먼저 렌더링될때 dom을 지정하면 된다고 하기는 함..
 
-  const sendItem = () => {
+  const sendItem = (event) => {
     const title = refTitle.current.value;
     const content = refContent.current.value;
     //console.log(original); // useState 확인 용
 
-    if (title === "" || content === "") return null;
+    event.preventDefault();
+    if (title.trim() === "" || content.trim() === "") return null;
 
     dispatch(
       sendTodo({

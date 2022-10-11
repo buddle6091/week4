@@ -63,6 +63,8 @@ const StLink = styled(Link)`
   text-decoration: none;
   color: #5102acd3;
   text-align: right;
+  left: -30px;
+  display: absolute;
 `;
 
 const StTitle = styled.h2`

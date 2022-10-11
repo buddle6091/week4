@@ -1,19 +1,21 @@
 import "../App.css";
 import styled from "styled-components";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { redirectTodo } from "../redux/modules/todoStore";
 
 function Detail() {
   const dispatch = useDispatch();
-  /*  const todo = useSelector((state) => state.todoStore.void);
-  console.log(todo); */
-  /* useParams 로 라우터 페이지의 파라미터를 받아오는 거임. 뭐시기냐, props 기능이 절대 아님*/
+  const todo = useSelector((state) => state.todoStore.void);
+  console.log(todo);
+  /* useParams 로 라우터 페이지의 파라미터를 받아오는 거임. 뭐시기냐, props 기능이 절대 아님
+  주소에 들어가는 데이터는 모두 STRING*/
   const { id } = useParams();
-  /* 렌더/링 시 바로 dispatch , 의존성 배열 사용 */
+  /* 렌더링 시 바로 dispatch , 의존성 배열 사용 */
   useEffect(() => {
-    dispatch(redirectTodo(id));
+    /* 문자열로 만들어지기 때문에 정수화를 해야됨 */
+    dispatch(redirectTodo(+id));
   }, [dispatch, id]);
   const navigate = useNavigate();
   // console.log(param);
@@ -23,8 +25,8 @@ function Detail() {
         이전으로
       </BtnBack>
       <StId>ID : {id}</StId>
-      {/*   <div> {todo.title} </div>
-      <div> {todo.content} </div> */}
+      <div> {todo.title} </div>
+      <div> {todo.content} </div>
     </StDetail>
   );
 }
@@ -68,6 +70,18 @@ const BtnBack = styled.button`
 `;
 
 const StId = styled.h2`
+  text-align: center;
+  font-size: 1.5rem;
+  color: #313131;
+`;
+
+const StTitle = styled(StId)`
+  text-align: center;
+  font-size: 1.5rem;
+  color: #313131;
+`;
+
+const StContent = styled(StId)`
   text-align: center;
   font-size: 1.5rem;
   color: #313131;
