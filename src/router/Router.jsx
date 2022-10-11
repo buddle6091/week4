@@ -9,8 +9,10 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/*       <Route path="/" element={<Home />}></Route>
-        <Route path="/detail" element={<Detail />}></Route> */}
+        <Route path="/" element={<Home />}></Route>
+        <Route path="detail" element={<Detail />}></Route>
+        {/* id값에 따라서 dynamic route 설정 */}
+        <Route path="detail/:id" element={<Detail />}></Route>
       </Routes>
     </BrowserRouter>
   );

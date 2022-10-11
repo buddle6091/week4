@@ -30,10 +30,10 @@ export const updateTodo = (payload) => {
   };
 };
 
-export const redirectTodo = (payload) => {
+export const redirectTodo = (id) => {
   return {
     type: REDIRECT,
-    payload,
+    id,
   };
 };
 
@@ -51,6 +51,15 @@ const initialState = {
       id: 2,
       title: "vue",
       content: "vue를 알아봐요",
+      isDone: false,
+    },
+  ],
+  void: [
+    {
+      id: "0",
+      title: "",
+      content: "",
+
       isDone: false,
     },
   ],
@@ -84,7 +93,15 @@ const todoStore = (state = initialState, action) => {
     case DELETE: {
       return {
         ...state,
-        list: state.list.filter((x) => x.id !== action.payload),
+        list: state.list.filter((todo) => todo.id !== action.payload),
+      };
+    }
+    case REDIRECT: {
+      return {
+        ...state,
+        void: state.list.find((todo) => {
+          return todo.id === action.payload;
+        }),
       };
     }
     default:

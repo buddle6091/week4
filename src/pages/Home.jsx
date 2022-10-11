@@ -1,21 +1,29 @@
 import "../App.css";
-import Router from "../router/Router";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import Header from "../components/Header";
 import TodoBox from "../components/TodoBox";
 import TodoForm from "../components/TodoForm";
 
 function Home() {
+  const todo = useSelector((state) => state.todoStore.list);
+  const param = useParams();
+  console.log(todo);
+  console.log(param);
   return (
-    <div className="Home">
-      <Router />
+    <StHome>
       <Header />
       <TodoForm />
       <TodoBox />
-    </div>
+    </StHome>
   );
 }
 
 export default Home;
+
+const StHome = styled.div`
+  max-width: 1200px;
+  min-width: 800px;
+`;

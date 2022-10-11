@@ -1,17 +1,17 @@
 import "../App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, updateTodo } from "../redux/modules/todoStore";
-//import { useNavigate } from "react-router-dom";
+import { useLocation, useParams, Link } from "react-router-dom";
 
 function Todo({ todo, title, content }) {
-  //const navigate = useNavigate();
-  //const list = useSelector((state) => state.todoStore.list);
+  const findId = useSelector((state) => state.todoStore.list);
+  const location = useLocation();
+  const param = useParams();
+  console.log(param);
   const dispatch = useDispatch();
 
   const deleteItem = (id) => {
     dispatch(deleteTodo(id));
-    /*     const temp = list.map((todo) => todo.id !== id);
-    return temp; */
   };
 
   const doneItem = (id) => {
@@ -20,7 +20,11 @@ function Todo({ todo, title, content }) {
 
   return (
     <div className="Todo">
-      <h1>상세보기</h1>
+      <Link to={`/detail/${todo.id}`} key={todo.id}>
+        {/* useNavigation = <a> 브라우저 새로고침되어 데이터 전달을 못함 -> 초기화 되서
+      이걸 <Link> 가 지켜준데 */}
+        <h2>상세보기</h2>
+      </Link>
       <h2> {title} </h2>
       <p>{content}</p>
       {/* 즉시 실행 함수를 썬 이유는 Clouser 개념*/}
