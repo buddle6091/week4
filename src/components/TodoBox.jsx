@@ -1,4 +1,5 @@
 import "../App.css";
+import styled from "styled-components";
 import Todo from "./Todo";
 import { useSelector } from "react-redux";
 
@@ -8,8 +9,8 @@ function TodoBox() {
 
   return (
     <form>
-      <div className="TodoBox">
-        <h1 className="pstyle">Working.. 🔥</h1>
+      <StH1>Working.. 🔥</StH1>
+      <StTodoBox>
         {list.map((todo) => {
           if (todo.isDone == 0) {
             return (
@@ -25,7 +26,10 @@ function TodoBox() {
             return null;
           }
         })}
-        <h1 className="pstyle">Done..! 🎉</h1>
+      </StTodoBox>
+      <StHr />
+      <StH1>Done..! 🎉</StH1>
+      <StTodoBox>
         {list.map((todo) => {
           if (todo.isDone == 1) {
             return (
@@ -40,9 +44,37 @@ function TodoBox() {
             return null;
           }
         })}
-      </div>
+      </StTodoBox>
     </form>
   );
 }
 
 export default TodoBox;
+
+const StTodoBox = styled.div`
+  height: 240px;
+  background-color: transparent;
+  flex-direction: row;
+  display: flex;
+`;
+
+const StH1 = styled.h1`
+  font-size: 1.5rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 2px black;
+  text-align: left;
+  margin-left: 20px;
+`;
+
+const StHr = styled.hr`
+  width: 90vw;
+  height: 2px;
+  max-width: 1150px;
+  min-width: 800px;
+  text-align: left;
+  top: 420px;
+  margin-left: 15px;
+  margin-top: 60px;
+  position: absolute;
+  background-color: #1177eb2f;
+`;

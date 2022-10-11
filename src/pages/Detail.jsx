@@ -1,6 +1,7 @@
 import "../App.css";
+import styled from "styled-components";
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { redirectTodo } from "../redux/modules/todoStore";
 
@@ -17,15 +18,57 @@ function Detail() {
   const navigate = useNavigate();
   // console.log(param);
   return (
-    <div className="Detail">
-      <button type="button" onClick={() => navigate("/")}>
+    <StDetail>
+      <BtnBack type="button" onClick={() => navigate("/")}>
         이전으로
-      </button>
-      ID : {id}
+      </BtnBack>
+      <StId>ID : {id}</StId>
       {/*   <div> {todo.title} </div>
       <div> {todo.content} </div> */}
-    </div>
+    </StDetail>
   );
 }
 
 export default Detail;
+
+const StDetail = styled.div`
+  max-width: 1200px;
+  min-width: 800px;
+  height: 600px;
+  margin: 10vh auto;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.767);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 45px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+`;
+
+const BtnBack = styled.button`
+  width: 100px;
+  height: 40px;
+  margin-left: 1000px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 255);
+  background-color: #7f44d8c1;
+  box-shadow: 0 8px 22px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border: none;
+  border-radius: 10px;
+  justify-content: right;
+  display: inline;
+
+  :active {
+    background-color: #6b2dc98d;
+  }
+`;
+
+const StId = styled.h2`
+  text-align: center;
+  font-size: 1.5rem;
+  color: #313131;
+`;
