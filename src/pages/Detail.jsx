@@ -25,8 +25,8 @@ function Detail() {
         이전으로
       </BtnBack>
       <StId>ID : {id}</StId>
-      <div> {todo.title} </div>
-      <div> {todo.content} </div>
+      <StTitle> {todo.title} </StTitle>
+      <StContent> {todo.content} </StContent>
     </StDetail>
   );
 }
