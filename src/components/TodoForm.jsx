@@ -53,43 +53,38 @@ function TodoForm() {
   }; */
 
   return (
-    <StTdForm>
-      <form>
-        <StIContainer>
-          <h2>title</h2>
-          <StInput
-            type="text"
-            name="title"
-            ref={refTitle}
-            placeholder="Type here"
-          />
-        </StIContainer>
-        <StIContainer>
-          <h2>content</h2>
-          <StInput
-            type="text"
-            name="content"
-            ref={refContent}
-            placeholder="Type here"
-            //onKeyUp={keyControl}
-            //onKeyPress={enterItem}
-            // -> this feature is no longer recommended
-          />
-        </StIContainer>
-        <StButton
-          type="button"
-          className="btn glass ml-[10px]"
-          onClick={sendItem}>
-          Add Item
-        </StButton>
-      </form>
+    <StTdForm onSubmit={sendItem}>
+      <StIContainer>
+        <h2>title</h2>
+        <StInput
+          type="text"
+          name="title"
+          ref={refTitle}
+          placeholder="Type here"
+        />
+      </StIContainer>
+      <StIContainer>
+        <h2>content</h2>
+        <StInput
+          type="text"
+          name="content"
+          ref={refContent}
+          placeholder="Type here"
+          //onKeyUp={keyControl}
+          //onKeyPress={enterItem}
+          // -> this feature is no longer recommended
+        />
+      </StIContainer>
+      <StButton type="submit" className="btn glass ml-[10px]">
+        Add Item
+      </StButton>
     </StTdForm>
   );
 }
 
 export default TodoForm;
 
-const StTdForm = styled.div`
+const StTdForm = styled.form`
   width: 100%;
   height: 130px;
   max-width: inherit;
